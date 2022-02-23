@@ -13,3 +13,18 @@ math_l_btn = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True
 )
+
+
+math_l_btn_ru = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="Начальный"),
+            KeyboardButton(text="Средний"),
+        ],
+        [
+            KeyboardButton(text="Высший"),
+        ],
+
+    ],
+    resize_keyboard=True
+)
