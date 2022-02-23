@@ -8,7 +8,7 @@ from loader import dp, bot
 from keyboards.default.main_btn_uz import main_menu_ru
 from keyboards.default.lan_btn import menulan
 from keyboards.default.contact_btn import contact_Btn
-from states.Course_stste import Course_registration
+from states.Course_state_ru import Course_registration_ru_ru
 from keyboards.default.english_level import english_l_btn
 from keyboards.default.math import math_l_btn_ru
 from keyboards.inline.check_btn import tekshir
@@ -37,10 +37,10 @@ async def bot_start(message: types.Message):
 async def bot_start(message: types.Message):
     await message.answer("Введите свои личные данные для регистрации.")
     await message.answer("Ваше имя и фамилия", reply_markup=ReplyKeyboardRemove())
-    await Course_registration.fullname.set()
+    await Course_registration_ru.fullname.set()
 
 
-@dp.message_handler(state=Course_registration.fullname)
+@dp.message_handler(state=Course_registration_ru.fullname)
 async def answer_fullname(message: types.Message, state: FSMContext):
     fullname = message.text
 
@@ -50,9 +50,9 @@ async def answer_fullname(message: types.Message, state: FSMContext):
 
     await message.answer("Введите свой номер телефона.", reply_markup=contact_Btn)
 
-    await Course_registration.next()
+    await Course_registration_ru.next()
 
-@dp.message_handler(state=Course_registration.contact, content_types="contact")
+@dp.message_handler(state=Course_registration_ru.contact, content_types="contact")
 async def answer_fullname(message: types.Message, state: FSMContext):
     contact = message
 
@@ -63,7 +63,7 @@ async def answer_fullname(message: types.Message, state: FSMContext):
                 {"phone_number": contact.contact.phone_number}
             )
             await message.answer("Ваш уровень английского", reply_markup=english_l_btn)
-            await Course_registration.next()
+            await Course_registration_ru.next()
 
     elif 'text' in contact:
         if re.search(PHONE_NUM, contact.text):
@@ -72,18 +72,18 @@ async def answer_fullname(message: types.Message, state: FSMContext):
                 {"phone_number": contact.text}
             )
             await message.answer("Ваш уровень английского", reply_markup=english_l_btn)
-            await Course_registration.next()
+            await Course_registration_ru.next()
         else:
             await message.answer("❌ Вы ввели неправильный номер. , \nПожалуйста, введите снова!")
-            await Course_registration.contact.set()
+            await Course_registration_ru.contact.set()
 
 
 
     else:
         await message.answer("❌ Вы ввели неправильный номер. , \nПожалуйста, введите снова!")
-        await Course_registration.contact.set()
+        await Course_registration_ru.contact.set()
 
-@dp.message_handler(state=Course_registration.english_level)
+@dp.message_handler(state=Course_registration_ru.english_level)
 async def answer_fullname(message: types.Message, state: FSMContext):
     english = message.text
     await state.update_data(
@@ -91,9 +91,9 @@ async def answer_fullname(message: types.Message, state: FSMContext):
     )
     await message.answer("Ваш уровень по математике", reply_markup=math_l_btn_ru)
 
-    await Course_registration.next()
+    await Course_registration_ru.next()
 
-@dp.message_handler(state=Course_registration.math_level)
+@dp.message_handler(state=Course_registration_ru.math_level)
 async def answer_fullname(message: types.Message, state: FSMContext):
     math = message.text
     await state.update_data(
