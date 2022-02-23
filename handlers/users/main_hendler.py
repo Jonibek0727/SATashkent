@@ -110,15 +110,15 @@ async def answer_fullname(message: types.Message, state: FSMContext):
     today = datetime.today()
     day = f"{today.strftime('%d')}/{today.strftime('%m')}/{today.strftime('%y')}"
 
-    global msg
+    global _uz
 
-    msg = "📌 Shaxsiy ma'lumotlaringiz! \n\n"
-    msg += f"<b>Full name</b>: {name}\n"
-    msg += f"<b>Phone Number</b>:{phone_number}\n"
-    msg += f"<b>English level</b>:{english}\n"
-    msg += f"<b>Math level</b>:{math}\n"
-    msg += f"<b>Date</b> :{day}\n"
-    await message.answer(msg)
+    _uz = "📌 Shaxsiy ma'lumotlaringiz! \n\n"
+    _uz += f"<b>Full name</b>: {name}\n"
+    _uz += f"<b>Phone Number</b>:{phone_number}\n"
+    _uz += f"<b>English level</b>:{english}\n"
+    _uz += f"<b>Math level</b>:{math}\n"
+    _uz += f"<b>Date</b> :{day}\n"
+    await message.answer(_uz)
     await state.finish()
     await message.answer("Arizani yuborasizmi?", reply_markup=tekshir)
 
@@ -126,7 +126,7 @@ async def answer_fullname(message: types.Message, state: FSMContext):
 @dp.callback_query_handler(text="send")
 async def arizani_yuborish(call: CallbackQuery):
     await call.message.delete()
-    await bot.send_message(GROUP_CHAT_ID, msg)
+    await bot.send_message(GROUP_CHAT_ID, _uz)
 
     await call.message.answer("✅ Arizangiz yuborildi!\n☎️Siz bilan tez orada bog'lanamiz", reply_markup=main_menu)
     await call.answer(cache_time=30)
@@ -152,5 +152,5 @@ async def bot_start(message: types.Message):
 
 @dp.message_handler(text ='🧾 Kurs haqida')
 async def bot_start(message: types.Message):
-    await message.answer("<b>SATashkent</b> School xush kelibsiz!\n\n📌Bizda SAT kurslarining 2 turi mavjud:\n - Senior Course\n-  Junior Course\nSATashkent School har bir talaba uchun quyidagi qulayliklarni yaratadi:\n\n • Support Teacher xizmati\n • Haftada 6 kunlik darslar \n• Bir sinfda maksimal 12 talaba  • Chet elga hujjat topshirish bo'yicha maslahatlar\n• Bitiruvchilar bilan aloqa o'rnatish! \n• Tartibli va Individual uy vazifalari tizimi (AI bilan) \n\nBularning hammasi bir joyda!😍  ")
+    await message.answer("<b>SATashkent</b> School xush kelibsiz!\n\n📌Bizda SAT kurslarining 2 turi mavjud:\n - Senior Course\n-  Junior Course\nSATashkent School har bir talaba uchun quyidagi qulayliklarni yaratadi:\n\n • Support Teacher xizmati\n • Haftada 6 kunlik darslar \n• Bir sinfda maksimal 12 talaba \n • Chet elga hujjat topshirish bo'yicha maslahatlar\n• Bitiruvchilar bilan aloqa o'rnatish! \n• Tartibli va Individual uy vazifalari tizimi (AI bilan) \n\nBularning hammasi bir joyda!😍  ")
 

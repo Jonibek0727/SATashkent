@@ -11,7 +11,7 @@ from keyboards.default.contact_btn import contact_Btn
 from states.Course_state_ru import Course_registration_ru
 from keyboards.default.english_level import english_l_btn
 from keyboards.default.math import math_l_btn_ru
-from keyboards.inline.check_btn import tekshir
+from keyboards.inline.check_btn import tekshir_ru
 import re
 from datetime import datetime
 
@@ -112,7 +112,7 @@ async def answer_fullname(message: types.Message, state: FSMContext):
 
     global _ru
 
-    _ru = "📌 ваша личная информация! \n\n"
+    _ru = "📌 Ваша личная информация! \n\n"
     _ru += f"<b>Full name</b>: {name}\n"
     _ru += f"<b>Phone Number</b>:{phone_number}\n"
     _ru += f"<b>English level</b>:{english}\n"
@@ -120,10 +120,10 @@ async def answer_fullname(message: types.Message, state: FSMContext):
     _ru += f"<b>Date</b> :{day}\n"
     await message.answer(_ru)
     await state.finish()
-    await message.answer("Вы отправите заявку?", reply_markup=tekshir)
+    await message.answer("Вы отправите заявку?", reply_markup=tekshir_ru)
 
 
-@dp.callback_query_handler(text="send")
+@dp.callback_query_handler(text="send_ru")
 async def arizani_yuborish(call: CallbackQuery):
    
     await call.message.delete()
@@ -134,7 +134,7 @@ async def arizani_yuborish(call: CallbackQuery):
     await call.answer()
 
 
-@dp.callback_query_handler(text="wrong")
+@dp.callback_query_handler(text="wrong_ru")
 async def arizani_bekor_qilish(call: CallbackQuery):
     await call.message.delete()
     await call.message.answer("❌ Ваша заявка была отменена!", reply_markup=main_menu_ru)

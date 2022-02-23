@@ -28,3 +28,17 @@ math_l_btn_ru = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True
 )
+
+math_l_btn_en = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="Beginner"),
+            KeyboardButton(text="Elementary"),
+        ],
+        [
+            KeyboardButton(text="Intermediate"),
+        ],
+
+    ],
+    resize_keyboard=True
+)

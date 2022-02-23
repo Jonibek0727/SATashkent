@@ -34,3 +34,21 @@ main_menu_ru = ReplyKeyboardMarkup(
     ],
     resize_keyboard=True
 )
+
+
+main_menu_en = ReplyKeyboardMarkup(
+    keyboard=[
+        [
+            KeyboardButton(text="💡 Enroll in a course!"),
+            KeyboardButton(text="🧾 About us"),
+        ],
+        [
+            KeyboardButton(text="📩 Contacts"),
+            KeyboardButton(text="📍 Location"),
+        ],
+[
+            KeyboardButton(text="🔙 Back"),
+        ],
+    ],
+    resize_keyboard=True
+)
