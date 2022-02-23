@@ -8,7 +8,7 @@ from loader import dp, bot
 from keyboards.default.main_btn_uz import main_menu_ru
 from keyboards.default.lan_btn import menulan
 from keyboards.default.contact_btn import contact_Btn
-from states.Course_state_ru import Course_registration_ru_ru
+from states.Course_state_ru import Course_registration_ru
 from keyboards.default.english_level import english_l_btn
 from keyboards.default.math import math_l_btn_ru
 from keyboards.inline.check_btn import tekshir
@@ -110,23 +110,24 @@ async def answer_fullname(message: types.Message, state: FSMContext):
     today = datetime.today()
     day = f"{today.strftime('%d')}/{today.strftime('%m')}/{today.strftime('%y')}"
 
-    global msg
+    global _ru
 
-    msg = "📌 ваша личная информация! \n\n"
-    msg += f"<b>Full name</b>: {name}\n"
-    msg += f"<b>Phone Number</b>:{phone_number}\n"
-    msg += f"<b>English level</b>:{english}\n"
-    msg += f"<b>Math level</b>:{math}\n"
-    msg += f"<b>Date</b> :{day}\n"
-    await message.answer(msg)
+    _ru = "📌 ваша личная информация! \n\n"
+    _ru += f"<b>Full name</b>: {name}\n"
+    _ru += f"<b>Phone Number</b>:{phone_number}\n"
+    _ru += f"<b>English level</b>:{english}\n"
+    _ru += f"<b>Math level</b>:{math}\n"
+    _ru += f"<b>Date</b> :{day}\n"
+    await message.answer(_ru)
     await state.finish()
     await message.answer("Вы отправите заявку?", reply_markup=tekshir)
 
 
 @dp.callback_query_handler(text="send")
 async def arizani_yuborish(call: CallbackQuery):
+   
     await call.message.delete()
-    await bot.send_message(GROUP_CHAT_ID, msg)
+    await bot.send_message(GROUP_CHAT_ID, _ru)
 
     await call.message.answer("✅ Ваша заявка отправлена!\n☎️Мы свяжемся с вами в ближайшее время", reply_markup=main_menu_ru)
     await call.answer(cache_time=30)
